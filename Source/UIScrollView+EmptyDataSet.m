@@ -79,10 +79,6 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     UIView *view = objc_getAssociatedObject(self, kEmptyDataSetView);
     return view ? !view.hidden : NO;
 }
-
-
-#pragma mark - Getters (Private)
-
 - (DZNEmptyDataSetView *)emptyDataSetView
 {
     DZNEmptyDataSetView *view = objc_getAssociatedObject(self, kEmptyDataSetView);
@@ -93,14 +89,17 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         view.hidden = YES;
         
-        view.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dzn_didTapContentView:)];
-        view.tapGesture.delegate = self;
-        [view addGestureRecognizer:view.tapGesture];
+//        view.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dzn_didTapContentView:)];
+//        view.tapGesture.delegate = self;
+//        [view addGestureRecognizer:view.tapGesture];
         
         [self setEmptyDataSetView:view];
     }
     return view;
 }
+
+#pragma mark - Getters (Private)
+
 
 - (BOOL)dzn_canDisplay
 {
@@ -526,7 +525,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         view.clipsToBounds = YES;
         
         // Configure empty dataset userInteraction permission
-        view.userInteractionEnabled = [self dzn_isTouchAllowed];
+        view.userInteractionEnabled = YES;
         
         // Configure empty dataset fade in display
         view.fadeInOnDisplay = [self dzn_shouldFadeIn];
