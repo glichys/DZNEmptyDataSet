@@ -466,6 +466,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         // If a non-nil custom view is available, let's configure it instead
         if (customView) {
             view.customView = customView;
+            [view bringSubviewToFront:customView];
         }
         else {
             // Get the data from the data source
